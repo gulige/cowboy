@@ -281,7 +281,7 @@ takeover(Parent, Ref, Socket, Transport, _Opts, Buffer,
 		ref=Ref, socket=Socket, transport=Transport,
 		key=undefined, messages=Messages}),
 	case erlang:function_exported(Handler, websocket_init, 1) of
-		true -> handler_call(State, HandlerState, #ps_header{buffer=Buffer},
+		true -> handler_call(State, {Socket, HandlerState}, #ps_header{buffer=Buffer},
 			websocket_init, undefined, fun before_loop/3);
 		false -> before_loop(State, HandlerState, #ps_header{buffer=Buffer})
 	end.
